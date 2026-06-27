@@ -8,98 +8,66 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     min-height: 100vh;
-    font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
-    color: #f4ecff;
-    background:
-      radial-gradient(circle at 50% 18%, #3a1f5e 0%, #1b1030 55%, #0c0718 100%);
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: #1f2937;
+    background: #f5f5f7;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 24px;
+    line-height: 1.5;
   }
   .card {
     width: 100%;
-    max-width: 640px;
-    text-align: center;
-    background: rgba(20, 12, 38, 0.72);
-    border: 1px solid rgba(77, 214, 255, 0.3);
-    border-radius: 22px;
-    padding: 48px 40px;
-    box-shadow: 0 0 50px rgba(255, 94, 138, 0.3), inset 0 0 30px rgba(77, 214, 255, 0.08);
-    backdrop-filter: blur(8px);
+    max-width: 560px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   }
   h1 {
-    font-size: 44px;
-    line-height: 1.1;
-    letter-spacing: 2px;
-    font-weight: 900;
-    background: linear-gradient(#fff0b0, #ffd166 40%, #ff5e8a);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 18px rgba(255, 94, 138, 0.55));
+    font-size: 30px;
+    font-weight: 700;
+    color: #111827;
   }
   .role {
-    margin-top: 8px;
+    margin-top: 4px;
     font-size: 16px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #4dd6ff;
-    text-shadow: 0 0 12px rgba(77, 214, 255, 0.5);
+    color: #6b7280;
   }
-  .milestone {
-    margin: 32px auto 0;
-    background: rgba(0, 0, 0, 0.28);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 22px 24px;
+  .intro {
+    margin-top: 24px;
+    font-size: 17px;
+    color: #374151;
   }
-  .milestone .big {
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffd166;
-    text-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
-  }
-  .milestone .date {
-    margin-top: 8px;
-    font-size: 15px;
-    opacity: 0.85;
-    letter-spacing: 1px;
-  }
+  .intro .date { color: #6b7280; }
   .links {
-    margin-top: 32px;
+    margin-top: 28px;
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
   }
   .btn {
     display: inline-block;
     text-decoration: none;
-    font-size: 19px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 15px 34px;
-    border-radius: 30px;
-    color: #1a0820;
-    background: linear-gradient(#ffd166, #ff9d5c);
-    box-shadow: 0 6px 0 #b25a2e, 0 0 22px rgba(255, 157, 92, 0.5);
-    transition: transform 0.1s, box-shadow 0.1s;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
   }
-  .btn:hover { transform: translateY(-2px); }
-  .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #b25a2e; }
-  .btn.code {
-    color: #06222e;
-    background: linear-gradient(#4dd6ff, #2aa6d6);
-    box-shadow: 0 6px 0 #1a6c8c, 0 0 22px rgba(77, 214, 255, 0.5);
-  }
-  .btn.code:active { box-shadow: 0 2px 0 #1a6c8c; }
+  .btn.primary { background: #2563eb; color: #fff; }
+  .btn.primary:hover { background: #1d4ed8; }
+  .btn.secondary { background: #fff; color: #2563eb; border-color: #d1d5db; }
+  .btn.secondary:hover { border-color: #2563eb; }
   footer {
-    margin-top: 30px;
-    font-size: 12px;
-    opacity: 0.6;
-    letter-spacing: 1px;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #9ca3af;
   }
 </style>
 </head>
@@ -108,17 +76,17 @@
     <h1>Caio Henrique Barros Vilela</h1>
     <p class="role">Criador de jogos</p>
 
-    <div class="milestone">
-      <p class="big">Publiquei meu primeiro jogo aos 9 anos!</p>
-      <p class="date">27 de junho de 2026</p>
-    </div>
+    <p class="intro">
+      Publiquei meu primeiro jogo aos 9 anos,
+      <span class="date">em 27 de junho de 2026.</span>
+    </p>
 
     <div class="links">
-      <a class="btn" href="https://cacaivilela.github.io/tanky/" target="_blank" rel="noopener">Jogar TANKY</a>
-      <a class="btn code" href="https://github.com/cacaivilela/tanky" target="_blank" rel="noopener">Ver o código no GitHub</a>
+      <a class="btn primary" href="https://cacaivilela.github.io/tanky/" target="_blank" rel="noopener">Jogar TANKY</a>
+      <a class="btn secondary" href="https://github.com/cacaivilela/tanky" target="_blank" rel="noopener">Ver o código no GitHub</a>
     </div>
 
-    <footer>TANKY — batalha de tanques por turnos, feita do zero em HTML, CSS e JavaScript.</footer>
+    <footer>TANKY — batalha de tanques por turnos, feita em HTML, CSS e JavaScript.</footer>
   </main>
 </body>
 </html>
