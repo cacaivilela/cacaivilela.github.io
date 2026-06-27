@@ -109,6 +109,47 @@
   .btn.download { background: #16a34a; color: #fff; }
   .btn.download:hover { background: #15803d; }
 
+  /* Trailer animado */
+  .trailer {
+    position: relative;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(#2f7fc4, #5ba6e0 55%, #a9d8f2);
+    border: 1px solid var(--line);
+  }
+  .trailer::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42px;
+    background: linear-gradient(#6cc24a, #4a8a34); border-top: 3px solid #bff08a;
+  }
+  .tr-sun { position: absolute; top: 18px; right: 34px; width: 44px; height: 44px; border-radius: 50%; background: #fffceb; box-shadow: 0 0 36px 12px rgba(255,250,210,0.85); }
+  .tr-tank { position: absolute; bottom: 30px; width: 72px; image-rendering: pixelated; z-index: 2; animation: bob 1.6s ease-in-out infinite; }
+  .tr-tank.tg { left: 24px; }
+  .tr-tank.tr { right: 24px; transform: scaleX(-1); animation-delay: .4s; }
+  @keyframes bob { 0%,100% { bottom: 30px; } 50% { bottom: 34px; } }
+  .tr-shell { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: #fde047; box-shadow: 0 0 8px #fbbf24; z-index: 3; animation: fly 2.6s infinite; }
+  @keyframes fly {
+    0% { left: 86px; bottom: 78px; opacity: 0; }
+    6% { opacity: 1; }
+    50% { bottom: 152px; }
+    94% { opacity: 1; }
+    100% { left: calc(100% - 94px); bottom: 70px; opacity: 0; }
+  }
+  .tr-boom { position: absolute; right: 44px; bottom: 52px; width: 42px; height: 42px; border-radius: 50%; background: radial-gradient(#fff, #f97316 60%, rgba(249,115,22,0)); z-index: 3; opacity: 0; animation: boom 2.6s infinite; }
+  @keyframes boom { 0%,88% { opacity: 0; transform: scale(.2); } 92% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.7); } }
+  .tr-caps { position: absolute; top: 14px; left: 0; right: 0; height: 30px; z-index: 4; }
+  .cap { position: absolute; left: 0; right: 0; top: 0; text-align: center; font-weight: 800; font-size: 20px; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.65); opacity: 0; animation: cap 10.4s infinite; }
+  .cap:nth-child(2) { animation-delay: 2.6s; }
+  .cap:nth-child(3) { animation-delay: 5.2s; }
+  .cap:nth-child(4) { animation-delay: 7.8s; }
+  @keyframes cap {
+    0% { opacity: 0; transform: translateY(8px); }
+    3% { opacity: 1; transform: translateY(0); }
+    22% { opacity: 1; }
+    25% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
   footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 36px; }
 </style>
 </head>
@@ -122,6 +163,23 @@
   </header>
 
   <div class="wrap">
+    <section>
+      <h2>Trailer</h2>
+      <div class="trailer">
+        <div class="tr-sun"></div>
+        <img class="tr-tank tg" src="tank-green.png" alt="">
+        <img class="tr-tank tr" src="tank-red.png" alt="">
+        <div class="tr-shell"></div>
+        <div class="tr-boom"></div>
+        <div class="tr-caps">
+          <span class="cap">Terreno destrutível</span>
+          <span class="cap">Mais de 12 armas</span>
+          <span class="cap">Giga Battle: até 43 vs 43</span>
+          <span class="cap">Loja de DLCs</span>
+        </div>
+      </div>
+    </section>
+
     <section>
       <h2>Sobre mim</h2>
       <p>Oi! Eu sou o Caio e adoro criar jogos.</p>
