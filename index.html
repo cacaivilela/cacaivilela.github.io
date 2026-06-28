@@ -183,6 +183,15 @@
     100% { opacity: 0; }
   }
 
+  /* Jogar na hora (demo embutida) */
+  button.btn { font-family: inherit; cursor: pointer; }
+  .play-pick { display: flex; flex-wrap: wrap; gap: 10px; }
+  .play-stage { position: relative; margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #000; height: clamp(360px, 68vh, 560px); }
+  .play-stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  .play-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; }
+  .play-bar .now { color: var(--muted); font-size: 13px; }
+  .play-bar .now strong { color: var(--ink); }
+
   footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 36px; }
 
   /* Respeita quem prefere menos animação */
@@ -221,6 +230,23 @@
     </section>
 
     <section>
+      <h2>Jogar na hora</h2>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px">Demo grátis: clique e jogue direto aqui na página, sem instalar nada.</p>
+      <div class="play-pick" id="playPick">
+        <button class="btn primary" data-game="https://cacaivilela.github.io/tanky/" data-name="TANKY">▶ Jogar TANKY</button>
+        <button class="btn primary" style="background:#6d28d9" data-game="https://cacaivilela.github.io/monster-creator/" data-name="Monster Creator BEEM">▶ Jogar Monster Creator BEEM</button>
+      </div>
+      <div class="play-stage" id="playStage" hidden></div>
+      <div class="play-bar" id="playBar" hidden>
+        <span class="now" id="playNow"></span>
+        <span class="links" style="margin:0">
+          <button class="btn secondary" id="playFs">⛶ Tela cheia</button>
+          <button class="btn secondary" id="playClose">✕ Fechar</button>
+        </span>
+      </div>
+    </section>
+
+    <section>
       <h2>Sobre mim</h2>
       <p>Oi! Eu sou o Caio e adoro criar jogos.</p>
       <p>Eu programei o <strong>Monster Creator BEEM</strong> antes do jogo <strong>TANKY</strong>, mas publiquei o Monster Creator 1 dia depois.</p>
@@ -230,7 +256,7 @@
       <h2>Fatos rápidos</h2>
       <ul class="facts">
         <li><span class="k">Nascimento</span><span class="v">26 de outubro de 2016</span></li>
-        <li><span class="k">Primeiro jogo</span><span class="v">TANKY — 27 de junho de 2026</span></li>
+        <li><span class="k">Primeiro jogo publicado</span><span class="v">TANKY — 27 de junho de 2026</span></li>
         <li><span class="k">Jogos publicados</span><span class="v">TANKY e Monster Creator</span></li>
         <li><span class="k">Feito com</span><span class="v">HTML, CSS e JavaScript</span></li>
       </ul>
@@ -268,5 +294,47 @@
 
     <footer>© 2026 Caio Henrique Barros Vilela</footer>
   </div>
+
+  <script>
+  (function () {
+    var pick = document.getElementById('playPick');
+    var stage = document.getElementById('playStage');
+    var bar = document.getElementById('playBar');
+    var now = document.getElementById('playNow');
+
+    function load(url, name) {
+      stage.hidden = false;
+      bar.hidden = false;
+      now.innerHTML = 'Jogando: <strong></strong>';
+      now.querySelector('strong').textContent = name;
+      var f = document.createElement('iframe');
+      f.src = url;
+      f.title = name;
+      f.allow = 'fullscreen; autoplay; gamepad';
+      f.loading = 'lazy';
+      stage.innerHTML = '';
+      stage.appendChild(f);
+      stage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    pick.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-game]');
+      if (!b) return;
+      load(b.dataset.game, b.dataset.name);
+    });
+
+    document.getElementById('playFs').addEventListener('click', function () {
+      var f = stage.querySelector('iframe');
+      if (f && f.requestFullscreen) f.requestFullscreen();
+    });
+
+    document.getElementById('playClose').addEventListener('click', function () {
+      stage.innerHTML = '';
+      stage.hidden = true;
+      bar.hidden = true;
+      pick.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  })();
+  </script>
 </body>
 </html>
