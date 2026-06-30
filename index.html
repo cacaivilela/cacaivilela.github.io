@@ -12,8 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' transform='rotate(180 50 50)'>🕹️</text></svg>">
 
 <!-- Cor da barra do navegador (claro/escuro) -->
-<meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#04040a">
 
 <!-- Compartilhamento (WhatsApp, redes sociais) -->
 <meta property="og:type" content="website">
@@ -30,27 +29,27 @@
 <meta name="twitter:image" content="https://cacaivilela.github.io/scene-dia.png">
 <style>
   :root {
-    --bg: #f4f5f8;
-    --card: #ffffff;
-    --ink: #1f2937;
-    --muted: #6b7280;
-    --line: #e5e7eb;
-    --accent: #2563eb;
-    --accent-2: #7c3aed;
-    --header-bg: linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%);
-    --nav-bg: rgba(255, 255, 255, 0.82);
+    --bg: #04040a;
+    --card: #0c0c16;
+    --ink: #eef6ff;
+    --muted: #8c9bbd;
+    --line: #233150;
+    --accent: #00d8ff;
+    --accent-2: #ff36c4;
+    --header-bg: transparent;
+    --nav-bg: rgba(4, 4, 10, 0.72);
   }
-  @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: light) {
     :root {
-      --bg: #0f1117;
-      --card: #181b23;
-      --ink: #e5e7eb;
-      --muted: #9ca3af;
-      --line: #2a2f3a;
-      --accent: #3b82f6;
-      --accent-2: #8b5cf6;
-      --header-bg: linear-gradient(135deg, #161a2e 0%, #1d1530 100%);
-      --nav-bg: rgba(15, 17, 23, 0.82);
+      --bg: #04040a;
+      --card: #0c0c16;
+      --ink: #eef6ff;
+      --muted: #8c9bbd;
+      --line: #233150;
+      --accent: #00d8ff;
+      --accent-2: #ff36c4;
+      --header-bg: transparent;
+      --nav-bg: rgba(4, 4, 10, 0.72);
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -318,6 +317,51 @@
 
   /* Confete (criado via JS) */
   .confetti { position: fixed; z-index: 90; width: 9px; height: 14px; border-radius: 2px; pointer-events: none; will-change: transform, opacity; }
+
+  /* ====== Tema NEON sobre preto ====== */
+  body {
+    background:
+      radial-gradient(900px 520px at 50% -120px, rgba(0, 216, 255, 0.12), transparent 62%),
+      radial-gradient(760px 520px at 100% 8%, rgba(255, 54, 196, 0.12), transparent 60%),
+      radial-gradient(700px 600px at 0% 30%, rgba(124, 58, 237, 0.10), transparent 60%),
+      #04040a;
+    background-attachment: fixed;
+  }
+  header { border-bottom-color: rgba(0, 216, 255, 0.28); }
+  header h1 {
+    color: #eafdff;
+    text-shadow: 0 0 8px rgba(0, 216, 255, 0.75), 0 0 22px rgba(0, 216, 255, 0.45), 0 0 42px rgba(255, 54, 196, 0.35);
+  }
+  header .role { color: var(--accent-2); text-shadow: 0 0 12px rgba(255, 54, 196, 0.55); }
+  h2 { color: var(--accent); text-shadow: 0 0 10px rgba(0, 216, 255, 0.55); }
+  .nav { border-bottom-color: rgba(0, 216, 255, 0.22); }
+  .nav-brand { text-shadow: 0 0 12px rgba(0, 216, 255, 0.6); }
+  .hero-count span {
+    background: rgba(0, 216, 255, 0.04);
+    border-color: rgba(0, 216, 255, 0.38);
+    box-shadow: 0 0 14px rgba(0, 216, 255, 0.16);
+  }
+  section { border-color: rgba(0, 216, 255, 0.16); box-shadow: 0 0 26px rgba(0, 216, 255, 0.06); }
+  .game { border-color: rgba(0, 216, 255, 0.22); box-shadow: 0 0 16px rgba(0, 216, 255, 0.08); }
+  .game:hover { box-shadow: 0 0 30px rgba(255, 54, 196, 0.28), 0 12px 28px rgba(0, 0, 0, 0.55); }
+  .trailer { border-color: rgba(255, 54, 196, 0.32); box-shadow: 0 0 24px rgba(255, 54, 196, 0.18); }
+  .btn.primary { color: #04121a; text-shadow: none; box-shadow: 0 0 18px rgba(0, 216, 255, 0.45); }
+  .btn.primary:hover { background: #5fe6ff; box-shadow: 0 0 30px rgba(0, 216, 255, 0.75); }
+  .btn.secondary { box-shadow: 0 0 14px rgba(0, 216, 255, 0.12); }
+  .btn.secondary:hover { box-shadow: 0 0 22px rgba(0, 216, 255, 0.4); }
+  .btn.download { box-shadow: 0 0 16px rgba(34, 197, 94, 0.4); }
+  .btn.share { text-shadow: 0 0 10px rgba(0, 216, 255, 0.4); }
+  /* Botões de demo com fundo próprio (roxo/rosa) mantêm texto branco */
+  #playPick .btn.primary[style*="background"] { color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); }
+  .avatar { box-shadow: 0 0 30px rgba(0, 216, 255, 0.55), 0 0 56px rgba(255, 54, 196, 0.35); }
+  .avatar::after { box-shadow: 0 0 0 0 rgba(0, 216, 255, 0.5); animation: fxPulseNeon 2.8s ease-out infinite; }
+  @keyframes fxPulseNeon {
+    0% { box-shadow: 0 0 0 0 rgba(0, 216, 255, 0.5); }
+    70% { box-shadow: 0 0 0 18px rgba(0, 216, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 216, 255, 0); }
+  }
+  .toast { border: 1px solid var(--accent); box-shadow: 0 0 18px rgba(0, 216, 255, 0.4); }
+  #to-top { box-shadow: 0 0 18px rgba(0, 216, 255, 0.5); }
 
   /* Respeita quem prefere menos animação */
   @media (prefers-reduced-motion: reduce) {
