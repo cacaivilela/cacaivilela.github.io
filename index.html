@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://cacaivilela.github.io/">
 
 <!-- Favicon (emoji, sem arquivo extra) -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' transform='rotate(180 50 50)'>🕹️</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2306060e'/><g fill='none' stroke='%2300e5ff' stroke-width='8' stroke-linecap='round'><ellipse cx='50' cy='32' rx='22' ry='8'/><line x1='50' y1='36' x2='50' y2='58'/></g><circle cx='50' cy='70' r='13' fill='%23ff36c4'/></svg>">
 
 <!-- Cor da barra do navegador (claro/escuro) -->
 <meta name="theme-color" content="#04040a">
@@ -286,9 +286,10 @@
     100% { opacity: 0; transform: translateY(-280px) rotate(38deg); }
   }
 
-  /* Logo: joystick de cabeça pra baixo */
-  .logo-ico { display: inline-block; transform: rotate(180deg); line-height: 1; }
-  .avatar .logo-ico { font-size: 82px; }
+  /* Logo: joystick neon (SVG) */
+  .logo-svg { display: block; }
+  .logo-avatar { width: 78px; height: 78px; }
+  .logo-nav { width: 22px; height: 22px; display: inline-block; vertical-align: -5px; }
 
   /* Halo pulsante no avatar */
   .avatar { position: relative; }
@@ -353,7 +354,11 @@
   .btn.share { text-shadow: 0 0 10px rgba(0, 216, 255, 0.4); }
   /* Botões de demo com fundo próprio (roxo/rosa) mantêm texto branco */
   #playPick .btn.primary[style*="background"] { color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); }
-  .avatar { box-shadow: 0 0 30px rgba(0, 216, 255, 0.55), 0 0 56px rgba(255, 54, 196, 0.35); }
+  .avatar {
+    background: #06060e;
+    border: 2px solid rgba(0, 216, 255, 0.5);
+    box-shadow: 0 0 30px rgba(0, 216, 255, 0.55), 0 0 56px rgba(255, 54, 196, 0.3);
+  }
   .avatar::after { box-shadow: 0 0 0 0 rgba(0, 216, 255, 0.5); animation: fxPulseNeon 2.8s ease-out infinite; }
   @keyframes fxPulseNeon {
     0% { box-shadow: 0 0 0 0 rgba(0, 216, 255, 0.5); }
@@ -375,6 +380,27 @@
 </style>
 </head>
 <body>
+  <!-- Logo: joystick neon (de cabeça pra baixo) reutilizável -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;pointer-events:none">
+    <defs>
+      <filter id="neonC" x="-80%" y="-80%" width="260%" height="260%">
+        <feDropShadow dx="0" dy="0" stdDeviation="2.4" flood-color="#00e5ff" flood-opacity="1"/>
+        <feDropShadow dx="0" dy="0" stdDeviation="5.5" flood-color="#00e5ff" flood-opacity="0.6"/>
+      </filter>
+      <filter id="neonM" x="-80%" y="-80%" width="260%" height="260%">
+        <feDropShadow dx="0" dy="0" stdDeviation="2.4" flood-color="#ff36c4" flood-opacity="1"/>
+        <feDropShadow dx="0" dy="0" stdDeviation="5.5" flood-color="#ff36c4" flood-opacity="0.6"/>
+      </filter>
+      <symbol id="ic-joystick" viewBox="0 0 100 100">
+        <g fill="none" stroke="#d7fbff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#neonC)">
+          <ellipse cx="50" cy="30" rx="23" ry="8.5"/>
+          <line x1="50" y1="34" x2="50" y2="58"/>
+        </g>
+        <circle cx="50" cy="70" r="12" fill="#ff36c4" stroke="#ffd1f3" stroke-width="2.5" filter="url(#neonM)"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <header id="top">
     <div class="fx fx-aurora" aria-hidden="true">
       <span class="fx-blob b1"></span>
@@ -382,7 +408,7 @@
       <span class="fx-blob b3"></span>
     </div>
     <div class="fx fx-emojis" id="fxEmojis" aria-hidden="true"></div>
-    <div class="avatar"><span class="logo-ico">🕹️</span></div>
+    <div class="avatar"><svg class="logo-svg logo-avatar" aria-hidden="true"><use href="#ic-joystick"/></svg></div>
     <h1>Caio Henrique Barros Vilela</h1>
     <p class="role">Criador de jogos</p>
     <p class="hero-count">
@@ -399,7 +425,7 @@
 
   <nav class="nav" aria-label="Navegação principal">
     <div class="nav-inner">
-      <a class="nav-brand" href="#top"><span class="logo-ico">🕹️</span> Caio</a>
+      <a class="nav-brand" href="#top"><svg class="logo-svg logo-nav" aria-hidden="true"><use href="#ic-joystick"/></svg> Caio</a>
       <div class="nav-links">
         <a href="#jogos">Jogos</a>
         <a href="#demos">Demos</a>
