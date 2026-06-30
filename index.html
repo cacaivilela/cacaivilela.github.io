@@ -189,15 +189,17 @@
   .btn.download { background: #16a34a; color: #fff; }
   .btn.download:hover { background: #15803d; box-shadow: 0 6px 16px rgba(22, 163, 74, 0.35); }
 
-  /* Trailer animado (slideshow das cenas do jogo) */
+  /* Trailer em vídeo (uma partida real, gravada e editada) */
   .trailer {
     position: relative;
-    height: 220px;
+    width: 100%;
+    aspect-ratio: 5 / 3;
     border-radius: 12px;
     overflow: hidden;
-    background: linear-gradient(#2f7fc4, #5ba6e0 55%, #a9d8f2);
+    background: #0b1220;
     border: 1px solid var(--line);
   }
+  .trailer-vid { width: 100%; height: 100%; display: block; object-fit: cover; background: #0b1220; }
   .tr-frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; opacity: 0; animation: fade 12s infinite; }
   .tr-frame:nth-child(2) { animation-delay: 3s; }
   .tr-frame:nth-child(3) { animation-delay: 6s; }
@@ -359,18 +361,12 @@
     <section>
       <h2>Trailer</h2>
       <div class="trailer">
-        <img class="tr-frame" src="scene-dia.png" alt="Cena do jogo: Dia" loading="lazy" decoding="async">
-        <img class="tr-frame" src="scene-noite.png" alt="Cena do jogo: Noite" loading="lazy" decoding="async">
-        <img class="tr-frame" src="scene-lua.png" alt="Cena do jogo: Lua" loading="lazy" decoding="async">
-        <img class="tr-frame" src="scene-vulcao.png" alt="Cena do jogo: Vulcão" loading="lazy" decoding="async">
-        <div class="tr-caps">
-          <span class="cap">Cenário: Dia</span>
-          <span class="cap">Cenário: Noite</span>
-          <span class="cap">Dimensão: Lua</span>
-          <span class="cap">Dimensão: Vulcão</span>
-        </div>
+        <video class="trailer-vid" autoplay loop muted playsinline preload="metadata" poster="tanky-trailer-poster.jpg" aria-label="Trailer do jogo TANKY: uma partida completa">
+          <source src="tanky-trailer.webm" type="video/webm">
+          <source src="tanky-trailer.mp4" type="video/mp4">
+        </video>
       </div>
-      <p class="trailer-note">Cenas do TANKY 🎬</p>
+      <p class="trailer-note">Uma partida de verdade do TANKY — do menu até a vitória 🎬</p>
     </section>
 
     <section id="sobre">
