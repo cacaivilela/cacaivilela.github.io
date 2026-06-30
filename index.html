@@ -470,6 +470,15 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Garante que o trailer toque (autoplay mudo) mesmo em navegadores mais exigentes
+    var trailerVid = document.querySelector('.trailer-vid');
+    if (trailerVid) {
+      var tryPlay = function () { var pr = trailerVid.play(); if (pr && pr.catch) pr.catch(function () {}); };
+      tryPlay();
+      document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
+      window.addEventListener('pointerdown', tryPlay, { once: true });
+    }
+
     // Destaca na barra de navegação a seção que está na tela
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
     var sections = navLinks
