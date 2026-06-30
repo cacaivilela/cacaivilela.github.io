@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://cacaivilela.github.io/">
 
 <!-- Favicon (emoji, sem arquivo extra) -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' transform='rotate(180 50 50)'>🕹️</text></svg>">
 
 <!-- Cor da barra do navegador (claro/escuro) -->
 <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
@@ -287,6 +287,9 @@
     100% { opacity: 0; transform: translateY(-280px) rotate(38deg); }
   }
 
+  /* Logo: joystick de cabeça pra baixo */
+  .logo-ico { display: inline-block; transform: rotate(180deg); line-height: 1; }
+
   /* Halo pulsante no avatar */
   .avatar { position: relative; }
   .avatar::after {
@@ -334,7 +337,7 @@
       <span class="fx-blob b3"></span>
     </div>
     <div class="fx fx-emojis" id="fxEmojis" aria-hidden="true"></div>
-    <div class="avatar">C</div>
+    <div class="avatar"><span class="logo-ico">🕹️</span></div>
     <h1>Caio Henrique Barros Vilela</h1>
     <p class="role">Criador de jogos</p>
     <p class="hero-count">
@@ -351,7 +354,7 @@
 
   <nav class="nav" aria-label="Navegação principal">
     <div class="nav-inner">
-      <a class="nav-brand" href="#top">🎮 Caio</a>
+      <a class="nav-brand" href="#top"><span class="logo-ico">🕹️</span> Caio</a>
       <div class="nav-links">
         <a href="#jogos">Jogos</a>
         <a href="#demos">Demos</a>
