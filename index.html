@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Caio Henrique Barros Vilela — Criador de jogos</title>
-<meta name="description" content="Site do Caio, criador de jogos. Conheça o TANKY: uma batalha de tanques por turnos com terreno destrutível, vários modos e loja de DLCs. Jogue agora, de graça, direto no navegador.">
+<meta name="description" content="Site do Caio, criador de jogos. Jogue de graça, direto no navegador: TANKY (batalha de tanques por turnos), Monster Creator (crie e batalhe com monstros) e Crazy Royale (battle royale de paintball 3D).">
 <meta name="author" content="Caio Henrique Barros Vilela">
 <link rel="canonical" href="https://cacaivilela.github.io/">
 
@@ -20,13 +20,13 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Caio Henrique Barros Vilela">
 <meta property="og:title" content="Caio Henrique Barros Vilela — Criador de jogos">
-<meta property="og:description" content="Conheça o TANKY: batalha de tanques por turnos com terreno destrutível, vários modos e loja de DLCs. Jogue agora, de graça, direto no navegador.">
+<meta property="og:description" content="3 jogos de graça, direto no navegador: TANKY, Monster Creator e Crazy Royale. Jogue agora, sem instalar nada.">
 <meta property="og:url" content="https://cacaivilela.github.io/">
 <meta property="og:image" content="https://cacaivilela.github.io/scene-dia.png">
-<meta property="og:image:alt" content="Cena do jogo TANKY">
+<meta property="og:image:alt" content="Cena de um jogo do Caio">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Caio Henrique Barros Vilela — Criador de jogos">
-<meta name="twitter:description" content="Conheça o TANKY: batalha de tanques por turnos. Jogue agora, de graça, direto no navegador.">
+<meta name="twitter:description" content="3 jogos de graça, direto no navegador: TANKY, Monster Creator e Crazy Royale.">
 <meta name="twitter:image" content="https://cacaivilela.github.io/scene-dia.png">
 <style>
   :root {
@@ -38,6 +38,7 @@
     --accent: #2563eb;
     --accent-2: #7c3aed;
     --header-bg: linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%);
+    --nav-bg: rgba(255, 255, 255, 0.82);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -49,6 +50,7 @@
       --accent: #3b82f6;
       --accent-2: #8b5cf6;
       --header-bg: linear-gradient(135deg, #161a2e 0%, #1d1530 100%);
+      --nav-bg: rgba(15, 17, 23, 0.82);
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,7 +63,7 @@
   }
   .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px 60px; }
 
-  a:focus-visible, .btn:focus-visible {
+  a:focus-visible, .btn:focus-visible, .nav-links a:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 2px;
     border-radius: 6px;
@@ -90,8 +92,36 @@
   }
   header h1 { font-size: 32px; font-weight: 800; color: var(--ink); }
   header .role { margin-top: 4px; color: var(--muted); font-size: 16px; }
-  .hero-btn { margin-top: 18px; font-size: 17px; padding: 12px 26px; }
+  .hero-count {
+    margin-top: 14px; display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    color: var(--muted); font-size: 13px; font-weight: 600;
+  }
+  .hero-count span {
+    background: var(--card); border: 1px solid var(--line);
+    padding: 4px 12px; border-radius: 999px;
+  }
+  .hero-btn { font-size: 17px; padding: 12px 26px; }
   .hero-note { margin-top: 10px; color: var(--muted); font-size: 13px; }
+
+  /* Barra de navegação fixa */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--nav-bg);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 720px; margin: 0 auto; padding: 10px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .nav-brand { font-weight: 800; color: var(--ink); text-decoration: none; font-size: 15px; white-space: nowrap; }
+  .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px;
+    padding: 6px 12px; border-radius: 8px; transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--accent); background: var(--card); }
+  .nav-links a.active { color: var(--accent); background: var(--card); }
 
   /* Cartões / seções */
   section {
@@ -102,6 +132,7 @@
     margin-top: 22px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     animation: rise 0.5s ease both;
+    scroll-margin-top: 70px;
   }
   @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
   h2 {
@@ -123,7 +154,9 @@
     border: 1px solid var(--line);
     border-radius: 12px;
     overflow: hidden;
+    transition: transform 0.15s, box-shadow 0.15s;
   }
+  .game:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12); }
   .game .banner {
     background: radial-gradient(circle at 30% 30%, #3a1f5e, #1b1030);
     color: #ffd166;
@@ -182,6 +215,7 @@
     25% { opacity: 0; }
     100% { opacity: 0; }
   }
+  .trailer-note { margin-top: 10px; color: var(--muted); font-size: 13px; text-align: center; }
 
   /* Jogar na hora (demo embutida) */
   button.btn { font-family: inherit; cursor: pointer; }
@@ -197,10 +231,6 @@
   .hero-actions .btn { margin-top: 0; }
   .btn.share { background: var(--card); color: var(--accent); border-color: var(--line); font-size: 17px; padding: 12px 22px; }
   .btn.share:hover { border-color: var(--accent); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.18); }
-
-  /* Cartões de jogo ganham vida ao passar o mouse */
-  .game { transition: transform 0.15s, box-shadow 0.15s; }
-  .game:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12); }
 
   /* Botão flutuante: voltar ao topo */
   #to-top {
@@ -237,69 +267,35 @@
 </style>
 </head>
 <body>
-  <header>
+  <header id="top">
     <div class="avatar">C</div>
     <h1>Caio Henrique Barros Vilela</h1>
     <p class="role">Criador de jogos</p>
+    <p class="hero-count">
+      <span>🎮 3 jogos</span>
+      <span>💸 100% grátis</span>
+      <span>🌐 no navegador</span>
+    </p>
     <div class="hero-actions">
-      <a class="btn primary hero-btn" href="https://cacaivilela.github.io/tanky/" target="_blank" rel="noopener">Jogar TANKY agora</a>
+      <a class="btn primary hero-btn" href="#jogos">🎮 Ver os jogos</a>
       <button class="btn share" id="shareBtn" type="button">🔗 Compartilhar</button>
     </div>
-    <p class="hero-note">Versão pública online — qualquer pessoa pode jogar pelo link, sem instalar nada.</p>
+    <p class="hero-note">Tudo online — qualquer pessoa pode jogar pelo link, sem instalar nada.</p>
   </header>
 
+  <nav class="nav" aria-label="Navegação principal">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">🎮 Caio</a>
+      <div class="nav-links">
+        <a href="#jogos">Jogos</a>
+        <a href="#demos">Demos</a>
+        <a href="#sobre">Sobre</a>
+      </div>
+    </div>
+  </nav>
+
   <div class="wrap">
-    <section>
-      <h2>Trailer</h2>
-      <div class="trailer">
-        <img class="tr-frame" src="scene-dia.png" alt="Cena do jogo: Dia" loading="lazy" decoding="async">
-        <img class="tr-frame" src="scene-noite.png" alt="Cena do jogo: Noite" loading="lazy" decoding="async">
-        <img class="tr-frame" src="scene-lua.png" alt="Cena do jogo: Lua" loading="lazy" decoding="async">
-        <img class="tr-frame" src="scene-vulcao.png" alt="Cena do jogo: Vulcão" loading="lazy" decoding="async">
-        <div class="tr-caps">
-          <span class="cap">Cenário: Dia</span>
-          <span class="cap">Cenário: Noite</span>
-          <span class="cap">Dimensão: Lua</span>
-          <span class="cap">Dimensão: Vulcão</span>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Demonstração dos jogos</h2>
-      <p style="color:var(--muted);font-size:14px;margin-bottom:14px">Estas são <strong>demonstrações (demos)</strong> dos meus jogos: clique e experimente direto aqui na página, de graça e sem instalar nada.</p>
-      <div class="play-pick" id="playPick">
-        <button class="btn primary" data-game="https://cacaivilela.github.io/tanky/" data-name="TANKY (demonstração)">▶ Demo do TANKY</button>
-        <button class="btn primary" style="background:#6d28d9" data-game="https://cacaivilela.github.io/monster-creator/" data-name="Monster Creator (demonstração)">▶ Demo do Monster Creator</button>
-        <button class="btn primary" style="background:#db2777" data-game="https://cacaivilela.github.io/crazy-royale/" data-name="Crazy Royale (demonstração)">▶ Demo do Crazy Royale</button>
-      </div>
-      <div class="play-stage" id="playStage" hidden></div>
-      <div class="play-bar" id="playBar" hidden>
-        <span class="now" id="playNow"></span>
-        <span class="links" style="margin:0">
-          <button class="btn secondary" id="playFs">⛶ Tela cheia</button>
-          <button class="btn secondary" id="playClose">✕ Fechar</button>
-        </span>
-      </div>
-    </section>
-
-    <section>
-      <h2>Sobre mim</h2>
-      <p>Oi! Eu sou o Caio e adoro criar jogos.</p>
-      <p>Eu programei o <strong>Monster Creator</strong> antes do jogo <strong>TANKY</strong>, mas publiquei o Monster Creator 1 dia depois.</p>
-    </section>
-
-    <section>
-      <h2>Fatos rápidos</h2>
-      <ul class="facts">
-        <li><span class="k">Nascimento</span><span class="v">26 de outubro de 2016</span></li>
-        <li><span class="k">Primeiro jogo publicado</span><span class="v">TANKY — 27 de junho de 2026</span></li>
-        <li><span class="k">Jogos publicados</span><span class="v">TANKY, Monster Creator e Crazy Royale</span></li>
-        <li><span class="k">Feito com</span><span class="v">HTML, CSS e JavaScript</span></li>
-      </ul>
-    </section>
-
-    <section>
+    <section id="jogos">
       <h2>Meus jogos</h2>
       <div class="game" style="margin-bottom:22px">
         <div class="banner" style="background:radial-gradient(circle at 30% 30%, #db2777, #2a0a52);color:#fde047;letter-spacing:3px;font-size:26px;text-shadow:0 0 18px rgba(253,224,71,0.55)">CRAZY ROYALE</div>
@@ -340,6 +336,57 @@
           <p style="margin-top:8px;font-size:13px;color:var(--muted)">Ou clique em <strong>Baixar o jogo (.zip)</strong>, descompacte e abra o <strong>index.html</strong>.</p>
         </div>
       </div>
+    </section>
+
+    <section id="demos">
+      <h2>Demonstração dos jogos</h2>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:14px">Estas são <strong>demonstrações (demos)</strong> dos meus jogos: clique e experimente direto aqui na página, de graça e sem instalar nada.</p>
+      <div class="play-pick" id="playPick">
+        <button class="btn primary" data-game="https://cacaivilela.github.io/tanky/" data-name="TANKY (demonstração)">▶ Demo do TANKY</button>
+        <button class="btn primary" style="background:#6d28d9" data-game="https://cacaivilela.github.io/monster-creator/" data-name="Monster Creator (demonstração)">▶ Demo do Monster Creator</button>
+        <button class="btn primary" style="background:#db2777" data-game="https://cacaivilela.github.io/crazy-royale/" data-name="Crazy Royale (demonstração)">▶ Demo do Crazy Royale</button>
+      </div>
+      <div class="play-stage" id="playStage" hidden></div>
+      <div class="play-bar" id="playBar" hidden>
+        <span class="now" id="playNow"></span>
+        <span class="links" style="margin:0">
+          <button class="btn secondary" id="playFs">⛶ Tela cheia</button>
+          <button class="btn secondary" id="playClose">✕ Fechar</button>
+        </span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Trailer</h2>
+      <div class="trailer">
+        <img class="tr-frame" src="scene-dia.png" alt="Cena do jogo: Dia" loading="lazy" decoding="async">
+        <img class="tr-frame" src="scene-noite.png" alt="Cena do jogo: Noite" loading="lazy" decoding="async">
+        <img class="tr-frame" src="scene-lua.png" alt="Cena do jogo: Lua" loading="lazy" decoding="async">
+        <img class="tr-frame" src="scene-vulcao.png" alt="Cena do jogo: Vulcão" loading="lazy" decoding="async">
+        <div class="tr-caps">
+          <span class="cap">Cenário: Dia</span>
+          <span class="cap">Cenário: Noite</span>
+          <span class="cap">Dimensão: Lua</span>
+          <span class="cap">Dimensão: Vulcão</span>
+        </div>
+      </div>
+      <p class="trailer-note">Cenas do TANKY 🎬</p>
+    </section>
+
+    <section id="sobre">
+      <h2>Sobre mim</h2>
+      <p>Oi! Eu sou o Caio e adoro criar jogos.</p>
+      <p>Eu programei o <strong>Monster Creator</strong> antes do jogo <strong>TANKY</strong>, mas publiquei o Monster Creator 1 dia depois.</p>
+    </section>
+
+    <section>
+      <h2>Fatos rápidos</h2>
+      <ul class="facts">
+        <li><span class="k">Nascimento</span><span class="v">26 de outubro de 2016</span></li>
+        <li><span class="k">Primeiro jogo publicado</span><span class="v">TANKY — 27 de junho de 2026</span></li>
+        <li><span class="k">Jogos publicados</span><span class="v">TANKY, Monster Creator e Crazy Royale</span></li>
+        <li><span class="k">Feito com</span><span class="v">HTML, CSS e JavaScript</span></li>
+      </ul>
     </section>
 
     <footer>© 2026 Caio Henrique Barros Vilela</footer>
@@ -402,7 +449,7 @@
       shareBtn.addEventListener('click', function () {
         var data = {
           title: 'Caio Henrique Barros Vilela — Criador de jogos',
-          text: 'Joga os jogos do Caio: TANKY e Monster Creator! 🎮',
+          text: 'Joga os jogos do Caio: TANKY, Monster Creator e Crazy Royale! 🎮',
           url: 'https://cacaivilela.github.io/'
         };
         if (navigator.share) {
@@ -426,6 +473,23 @@
     toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Destaca na barra de navegação a seção que está na tela
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var sections = navLinks
+      .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+      .filter(Boolean);
+    if ('IntersectionObserver' in window && sections.length) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach(function (a) {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(function (s) { spy.observe(s); });
+    }
   })();
   </script>
 </body>
