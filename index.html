@@ -157,15 +157,70 @@
     transition: transform 0.15s, box-shadow 0.15s;
   }
   .game:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12); }
+  /* ====== Capas dos jogos (pôster animado) ====== */
   .game .banner {
-    background: radial-gradient(circle at 30% 30%, #3a1f5e, #1b1030);
-    color: #ffd166;
-    font-weight: 900;
-    letter-spacing: 6px;
-    font-size: 34px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: 158px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    padding: 34px 10px;
-    text-shadow: 0 0 18px rgba(255, 94, 138, 0.6);
+    padding: 30px 14px;
+    color: var(--ink, #ffd166);
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: clamp(24px, 6.4vw, 40px);
+    background: linear-gradient(125deg, var(--c1, #3a1f5e), var(--c2, #1b1030) 72%);
+    background-size: 185% 185%;
+    animation: coverPan 13s ease-in-out infinite;
+  }
+  /* brilho colorido + textura de pontinhos atrás do título */
+  .game .banner::before {
+    content: '';
+    position: absolute; inset: -25%; z-index: 0;
+    background:
+      radial-gradient(closest-side at 24% 26%, var(--glow, #ff5e8a), transparent 72%),
+      radial-gradient(closest-side at 82% 74%, var(--glow, #ff5e8a), transparent 72%),
+      radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1.6px);
+    background-size: 100% 100%, 100% 100%, 15px 15px;
+    opacity: 0.5;
+    animation: coverGlow 9s ease-in-out infinite alternate;
+  }
+  /* faixa de brilho passando por cima */
+  .game .banner::after {
+    content: '';
+    position: absolute; top: 0; left: -130%; width: 55%; height: 100%; z-index: 3;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+    transform: skewX(-20deg); pointer-events: none;
+    animation: coverShine 5s ease-in-out infinite;
+  }
+  .game .banner .cover-title {
+    position: relative; z-index: 2; line-height: 1.1;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35), 0 0 16px var(--glow, #ff5e8a), 0 0 36px var(--glow, #ff5e8a);
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.28);
+  }
+  .cover-emojis { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+  .cover-emoji {
+    position: absolute; bottom: -34px; font-size: 22px; opacity: 0;
+    will-change: transform, opacity; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    animation: coverFloat linear infinite;
+  }
+  @keyframes coverPan { 0%, 100% { background-position: 0% 40%; } 50% { background-position: 100% 60%; } }
+  @keyframes coverGlow { 0% { opacity: 0.35; transform: scale(1); } 100% { opacity: 0.75; transform: scale(1.08); } }
+  @keyframes coverShine { 0% { left: -130%; } 55%, 100% { left: 150%; } }
+  @keyframes coverFloat {
+    0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+    12% { opacity: 0.9; }
+    88% { opacity: 0.9; }
+    100% { opacity: 0; transform: translateY(-200px) rotate(40deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .game .banner { animation: none; }
+    .game .banner::before { animation: none; }
+    .game .banner::after, .cover-emojis { display: none; }
   }
   .game .body { padding: 18px 20px; }
   .game .body p { color: var(--muted); font-size: 15px; }
@@ -379,7 +434,10 @@
     <section id="jogos">
       <h2>Meus jogos</h2>
       <div class="game" style="margin-bottom:22px">
-        <div class="banner" style="background:radial-gradient(circle at 30% 30%, #15803d, #06210f);color:#fde047;letter-spacing:3px;font-size:24px;text-shadow:0 0 18px rgba(253,224,71,0.5)">🐾 LOUCURA ANIMAL</div>
+        <div class="banner" style="--c1:#1f9e52;--c2:#06210f;--glow:#7ed957;--ink:#fde047">
+          <span class="cover-emojis" data-emojis="🐾🦊🐰🦉🐻🐊🐒🌿" aria-hidden="true"></span>
+          <span class="cover-title">🐾 LOUCURA ANIMAL</span>
+        </div>
         <div class="body">
           <p>Sobrevivência predador-presa em vista de cima! Escolha um bicho — cada um tem uma <strong>habilidade própria</strong> — e sobreviva (ou cace) na floresta. Tem o <strong>DLC Feras da Selva</strong> (lobo, esquilo, jacaré e macaco). Feito com Phaser 3.</p>
           <div class="links">
@@ -392,7 +450,10 @@
       </div>
 
       <div class="game" style="margin-bottom:22px">
-        <div class="banner" style="background:radial-gradient(circle at 30% 30%, #6a2c9c, #1a0b2e);color:#7ed957;letter-spacing:3px;font-size:24px;text-shadow:0 0 18px rgba(126,217,87,0.55)">🧪 POTION WIZARD</div>
+        <div class="banner" style="--c1:#8b3fd6;--c2:#14052e;--glow:#9dff5a;--ink:#b9ff6a">
+          <span class="cover-emojis" data-emojis="🧪💥✨🫧🔮🧫" aria-hidden="true"></span>
+          <span class="cover-title">🧪 POTION WIZARD</span>
+        </div>
         <div class="body">
           <p>Vire um mago-cientista! Misture ingredientes do dia a dia — vinagre, bicarbonato, refri, Mentos — e descubra <strong>57 reações químicas reais</strong>. Cada acerto explica a ciência de verdade, com efeito e curiosidade. Coca + Mentos = KABUM! 💥</p>
           <div class="links">
@@ -405,7 +466,10 @@
       </div>
 
       <div class="game" style="margin-bottom:22px">
-        <div class="banner" style="background:radial-gradient(circle at 30% 30%, #db2777, #2a0a52);color:#fde047;letter-spacing:3px;font-size:26px;text-shadow:0 0 18px rgba(253,224,71,0.55)">CRAZY ROYALE</div>
+        <div class="banner" style="--c1:#e11d74;--c2:#2a0a52;--glow:#ffd54a;--ink:#ffe14d">
+          <span class="cover-emojis" data-emojis="🎨💥🔫🟢🟣🟡🔵" aria-hidden="true"></span>
+          <span class="cover-title">🎨 CRAZY ROYALE</span>
+        </div>
         <div class="body">
           <p>Um battle royale de paintball 3D maluco! Escolha personagem, marcador, tanque de tinta e pinte os adversários. Tem Battle Royale, Modo Boss co-op, Crazy Build e Batalha Infinita.</p>
           <div class="links">
@@ -419,7 +483,10 @@
       </div>
 
       <div class="game" style="margin-bottom:22px">
-        <div class="banner" style="background:radial-gradient(circle at 30% 30%, #6d28d9, #2a0a52);color:#86efac;letter-spacing:3px;font-size:26px;text-shadow:0 0 18px rgba(134,239,172,0.55)">MONSTER CREATOR</div>
+        <div class="banner" style="--c1:#7c3aed;--c2:#1a0730;--glow:#86efac;--ink:#a7f3d0">
+          <span class="cover-emojis" data-emojis="👾💜🟩🔺⭐🎨" aria-hidden="true"></span>
+          <span class="cover-title">👾 MONSTER CREATOR</span>
+        </div>
         <div class="body">
           <p>Crie seus próprios monstros pixel por pixel, evolua, faça fusões e batalhe! Tem galeria, criação de golpes, chefes, história e muito mais.</p>
           <div class="links">
@@ -432,7 +499,10 @@
       </div>
 
       <div class="game">
-        <div class="banner">TANKY</div>
+        <div class="banner" style="--c1:#c2410c;--c2:#14060a;--glow:#ff8a3d;--ink:#ffd166">
+          <span class="cover-emojis" data-emojis="💥🔥🚀🎮🟠⚫" aria-hidden="true"></span>
+          <span class="cover-title">💥 TANKY</span>
+        </div>
         <div class="body">
           <p>Batalha de tanques por turnos. Destrua o terreno, escolha sua arma e vença o inimigo. Tem modo contra o computador, Giga Battle com vários tanques, Sandbox e loja de DLCs.</p>
           <div class="links">
@@ -664,6 +734,28 @@
         card.addEventListener('pointerleave', function () { card.style.transform = ''; });
       });
     }
+  })();
+  </script>
+  <script>
+  // Emojis temáticos flutuando em cada capa de jogo
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    document.querySelectorAll('.cover-emojis[data-emojis]').forEach(function (layer) {
+      var chars = Array.from(layer.getAttribute('data-emojis') || '')
+        .filter(function (c) { var cp = c.codePointAt(0); return cp > 0x2000 && cp !== 0xFE0F; });
+      if (!chars.length) return;
+      for (var i = 0; i < 11; i++) {
+        var s = document.createElement('span');
+        s.className = 'cover-emoji';
+        s.textContent = chars[i % chars.length];
+        s.style.left = (3 + Math.random() * 92) + '%';
+        s.style.fontSize = (15 + Math.random() * 18) + 'px';
+        s.style.animationDuration = (4.5 + Math.random() * 5.5) + 's';
+        s.style.animationDelay = (-Math.random() * 9) + 's';
+        layer.appendChild(s);
+      }
+    });
   })();
   </script>
 </body>
